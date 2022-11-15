@@ -21,6 +21,7 @@ import { useState } from "react";
 import { ChatState } from "../../Context/ChatProvider";
 import UserBadgeItem from "../userAvatar/UserBadgeItem";
 import UserListItem from "../userAvatar/UserListItem";
+import { MaiNRUl} from '../../constants.js'
 
 const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -30,6 +31,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
   const [loading, setLoading] = useState(false);
   const [renameloading, setRenameLoading] = useState(false);
   const toast = useToast();
+  
 
   const { selectedChat, setSelectedChat, user } = ChatState();
 
@@ -46,7 +48,8 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.get(`https://a38ce8477337.in.ngrok.io/api/user?search=${search}`, config);
+      let BaseURL=MaiNRUl+`/api/user?search=${search}`;
+      const { data } = await axios.get(BaseURL, config);
       console.log(data);
       setLoading(false);
       setSearchResult(data);
@@ -73,8 +76,9 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
           Authorization: `Bearer ${user.token}`,
         },
       };
+      let BaseURL=MaiNRUl+`/api/chat/rename`;
       const { data } = await axios.put(
-        `/api/chat/rename`,
+        BaseURL,
         {
           chatId: selectedChat._id,
           chatName: groupChatName,
@@ -131,8 +135,9 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
           Authorization: `Bearer ${user.token}`,
         },
       };
+      let BaseURL=MaiNRUl+`/api/chat/groupadd`;
       const { data } = await axios.put(
-        `/api/chat/groupadd`,
+        BaseURL,
         {
           chatId: selectedChat._id,
           userId: user1._id,
@@ -176,8 +181,9 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
           Authorization: `Bearer ${user.token}`,
         },
       };
+      let BaseURL=MaiNRUl+`/api/chat/groupremove`;
       const { data } = await axios.put(
-        `/api/chat/groupremove`,
+        BaseURL,
         {
           chatId: selectedChat._id,
           userId: user1._id,

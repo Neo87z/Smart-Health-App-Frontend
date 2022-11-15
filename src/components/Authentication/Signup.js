@@ -6,6 +6,7 @@ import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
 import { useState } from "react";
 import { useHistory } from "react-router";
+import { MaiNRUl} from '../../constants.js'
 
 const Signup = () => {
   const [show, setShow] = useState(false);
@@ -50,8 +51,10 @@ const Signup = () => {
           "Content-type": "application/json",
         },
       };
+
+      let BaseURL=MaiNRUl+'/api/user'
       const { data } = await axios.post(
-        "/api/user",
+        BaseURL,
         {
           name,
           email,

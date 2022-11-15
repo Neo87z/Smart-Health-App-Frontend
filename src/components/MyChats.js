@@ -8,6 +8,7 @@ import ChatLoading from "./ChatLoading";
 import GroupChatModal from "./miscellaneous/GroupChatModal";
 import { Button } from "@chakra-ui/react";
 import { ChatState } from "../Context/ChatProvider";
+import { MaiNRUl} from '../constants.js'
 
 const MyChats = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState();
@@ -24,8 +25,8 @@ const MyChats = ({ fetchAgain }) => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-
-      const { data } = await axios.get("https://a38ce8477337.in.ngrok.io/api/chat", config);
+      let BaseURL=MaiNRUl+"/api/chat";
+      const { data } = await axios.get(BaseURL, config);
       setChats(data);
     } catch (error) {
       toast({

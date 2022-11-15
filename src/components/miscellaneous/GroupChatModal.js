@@ -18,6 +18,7 @@ import { useState } from "react";
 import { ChatState } from "../../Context/ChatProvider";
 import UserBadgeItem from "../userAvatar/UserBadgeItem";
 import UserListItem from "../userAvatar/UserListItem";
+import { MaiNRUl} from '../../constants.js'
 
 const GroupChatModal = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -58,7 +59,9 @@ const GroupChatModal = ({ children }) => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.get(`https://a38ce8477337.in.ngrok.io/api/user?search=${search}`, config);
+
+      let BaseURL=MaiNRUl+`/api/user?search=${search}`;
+      const { data } = await axios.get(BaseURL, config);
       console.log(data);
       setLoading(false);
       setSearchResult(data);
@@ -96,8 +99,9 @@ const GroupChatModal = ({ children }) => {
           Authorization: `Bearer ${user.token}`,
         },
       };
+      let BaseURL=MaiNRUl+`/api/chat/group`;
       const { data } = await axios.post(
-        `/api/chat/group`,
+        BaseURL,
         {
           name: groupChatName,
           users: JSON.stringify(selectedUsers.map((u) => u._id)),

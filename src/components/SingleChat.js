@@ -11,11 +11,12 @@ import ProfileModal from "./miscellaneous/ProfileModal";
 import ScrollableChat from "./ScrollableChat";
 import Lottie from "react-lottie";
 import animationData from "../animations/typing.json";
+import { MaiNRUl} from '../constants.js'
 
 import io from "socket.io-client";
 import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
 import { ChatState } from "../Context/ChatProvider";
-const ENDPOINT = "https://a38ce8477337.in.ngrok.io"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
+const ENDPOINT = "http://localhost:5000"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
@@ -51,9 +52,9 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       };
 
       setLoading(true);
-
+      let BaseURL=MaiNRUl+`/api/message/${selectedChat._id}`
       const { data } = await axios.get(
-        `https://a38ce8477337.in.ngrok.io/api/message/${selectedChat._id}`,
+        BaseURL,
         config
       );
       setMessages(data);
@@ -83,8 +84,10 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           },
         };
         setNewMessage("");
+
+        let BaseURL=MaiNRUl+"/api/message"
         const { data } = await axios.post(
-          "/api/message",
+          BaseURL,
           {
             content: newMessage,
             chatId: selectedChat,

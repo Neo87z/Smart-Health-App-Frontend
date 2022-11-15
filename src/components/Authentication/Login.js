@@ -1,3 +1,4 @@
+
 import { Button } from "@chakra-ui/button";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
@@ -6,6 +7,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
+import { MaiNRUl} from '../../constants.js'
 
 const Login = () => {
   const [show, setShow] = useState(false);
@@ -37,10 +39,11 @@ const Login = () => {
         headers: {
           "Content-type": "application/json",
         },
-      };
+       };
 
+       let BaseURL=MaiNRUl+'/api/user/login'
       const { data } = await axios.post(
-        "https://a38ce8477337.in.ngrok.io/api/user/login",
+        BaseURL,
         { email, password },
         config
       );

@@ -31,6 +31,7 @@ import { Effect } from "react-notification-badge";
 import { getSender } from "../../config/ChatLogics";
 import UserListItem from "../userAvatar/UserListItem";
 import { ChatState } from "../../Context/ChatProvider";
+import { MaiNRUl} from '../../constants.js'
 
 function SideDrawer() {
   const [search, setSearch] = useState("");
@@ -76,8 +77,8 @@ function SideDrawer() {
           Authorization: `Bearer ${user.token}`,
         },
       };
-
-      const { data } = await axios.get(`https://a38ce8477337.in.ngrok.io/api/user?search=${search}`, config);
+      let BaseURL=MaiNRUl+`/api/user?search=${search}`;
+      const { data } = await axios.get(BaseURL, config);
 
       setLoading(false);
       setSearchResult(data);
@@ -104,7 +105,8 @@ function SideDrawer() {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.post(`https://a38ce8477337.in.ngrok.io/api/chat`, { userId }, config);
+      let BaseURL=MaiNRUl+`/api/chat`;
+      const { data } = await axios.post(BaseURL, { userId }, config);
 
       if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
       setSelectedChat(data);
