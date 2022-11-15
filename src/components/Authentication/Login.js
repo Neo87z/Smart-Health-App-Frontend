@@ -40,7 +40,7 @@ const Login = () => {
       };
 
       const { data } = await axios.post(
-        "/api/user/login",
+        "https://a38ce8477337.in.ngrok.io/api/user/login",
         { email, password },
         config
       );
