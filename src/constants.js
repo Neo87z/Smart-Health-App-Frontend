@@ -1,3 +1,3 @@
-const MaiNRUl='https://7fceacdd0848.in.ngrok.io'
+const MaiNRUl=' https://17c0f58b98df.in.ngrok.io'
 
 export {MaiNRUl}
