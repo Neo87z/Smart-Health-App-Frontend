@@ -25,7 +25,7 @@ const MyChats = ({ fetchAgain }) => {
         },
       };
 
-      const { data } = await axios.get("/api/chat", config);
+      const { data } = await axios.get("https://a38ce8477337.in.ngrok.io/api/chat", config);
       setChats(data);
     } catch (error) {
       toast({
