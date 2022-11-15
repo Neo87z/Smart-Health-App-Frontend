@@ -46,7 +46,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.get(`/api/user?search=${search}`, config);
+      const { data } = await axios.get(`https://a38ce8477337.in.ngrok.io/api/user?search=${search}`, config);
       console.log(data);
       setLoading(false);
       setSearchResult(data);
