@@ -15,7 +15,7 @@ import animationData from "../animations/typing.json";
 import io from "socket.io-client";
 import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
 import { ChatState } from "../Context/ChatProvider";
-const ENDPOINT = "https://talk-a-tive.herokuapp.com"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
+const ENDPOINT = "https://a38ce8477337.in.ngrok.io"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
@@ -53,7 +53,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       setLoading(true);
 
       const { data } = await axios.get(
-        `/api/message/${selectedChat._id}`,
+        `https://a38ce8477337.in.ngrok.io/api/message/${selectedChat._id}`,
         config
       );
       setMessages(data);
